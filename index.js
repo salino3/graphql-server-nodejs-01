@@ -2,32 +2,15 @@
 
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
-const {
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLString: Str,
-} = require("graphql");
+const schema = require("./src/models/books");
 
 const app = express();
-
-const schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: "HelloWorld",
-    fields: () => ({
-      message: {
-        type: Str,
-        resolve: () => "Hello World!",
-      },
-    }),
-  }),
-});
 
 app.use(
   "/graphql",
   graphqlHTTP({
     schema: schema,
     graphiql: true,
-    
   })
 );
 
