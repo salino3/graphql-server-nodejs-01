@@ -9,4 +9,10 @@ const books = [
   { id: 8, name: "Beyond the Shadows", authorId: 3 },
 ];
 
-module.exports = books;
+const authors = [
+  { id: 1, name: "J. K. Rowling" },
+  { id: 2, name: "J. R. R. Tolkien" },
+  { id: 3, name: "Brent Weeks" },
+];
+
+module.exports = { books, authors };
