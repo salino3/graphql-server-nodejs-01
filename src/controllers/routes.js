@@ -94,6 +94,38 @@ const RootMutationType = new GraphQLObjectType({
         return author;
       },
     },
+    deleteBook: {
+      type: BookType,
+      description: "Delete a Book",
+      args: {
+        id: { type: GraphQLNonNull(GraphQLInt) },
+      },
+      resolve: (_, args) => {
+        const index = books.findIndex((book) => book.id === args.id);
+        if (index !== -1) {
+          const deletedBook = books.splice(index, 1)[0];
+          return deletedBook;
+        } else {
+          throw new Error("Book not found");
+        }
+      },
+    },
+    deleteAuthor: {
+      type: AuthorType,
+      description: "Delete an Author",
+      args: {
+        id: { type: GraphQLNonNull(GraphQLInt) },
+      },
+      resolve: (_, args) => {
+        const index = authors.findIndex((author) => author.id === args.id);
+        if (index !== -1) {
+          const deletedAuthor = authors.splice(index, 1)[0];
+          return deletedAuthor;
+        } else {
+          throw new Error("Author not found");
+        }
+      },
+    },
   }),
 });
 
